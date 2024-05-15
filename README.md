@@ -1,2 +1,15 @@
 # loselose-doom
-A fork of dsda-doom inspired by Lose/Lose
+ A fork of dsda-doom inspired by Lose/Lose and a recreation of DOOM/DOOM from Vargskelethor's HML stream.
+
+ ### Rules
+ Upon killing an enemy a random file will get picked and deleted from the filesystem. **PLAY AT YOUR OWN RISK**
+
+### Building
+TODO
+
+ ### How it works
+ A new loselose-doom.c file has been created in the prboom2/src directory. It contains a remove_random() function which calls random_file() to get a random file and deletes it afterwards.
+ The random_file() function first picks a starting folder, travels randomly to some of its children and picks a file. 
+ p_inter.c's P_KillMobj has been modified to call remove_random(), so that when you kill an enemy, everything described above happens.
+
+It's not efficient by any means and hiccups are noticeable after killing a bunch of enemies, but being efficient and stable is not the point of this fork.
