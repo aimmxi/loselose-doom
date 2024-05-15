@@ -254,10 +254,8 @@ dboolean P_GiveWeapon(player_t *player, weapontype_t weapon, dboolean dropped)
       /* cph 20028/10 - for old-school DM addicts, allow old behavior
        * where only consoleplayer's pickup sounds are heard */
       // displayplayer, not consoleplayer, for viewing multiplayer demos
-      if (!comp[comp_sound])
+      if (!comp[comp_sound] || player == &players[displayplayer])
         S_StartSound (player->mo, sfx_wpnup|PICKUP_SOUND); // killough 4/25/98
-      else if (player == &players[displayplayer])
-        S_StartVoidSound (sfx_wpnup|PICKUP_SOUND);
       return false;
     }
 
@@ -801,10 +799,8 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher)
   /* cph 20028/10 - for old-school DM addicts, allow old behavior
    * where only consoleplayer's pickup sounds are heard */
   // displayplayer, not consoleplayer, for viewing multiplayer demos
-  if (!comp[comp_sound])
+  if (!comp[comp_sound] || player == &players[displayplayer])
     S_StartSound (player->mo, sound | PICKUP_SOUND);   // killough 4/25/98
-  else if (player == &players[displayplayer])
-    S_StartVoidSound (sound | PICKUP_SOUND);
 }
 
 //
@@ -819,6 +815,13 @@ static void P_KillMobj(mobj_t *source, mobj_t *target)
   mobjtype_t item;
   mobj_t     *mo;
   int xdeath_limit;
+  
+  // aimmxi 05/2024: A random file gets deleted
+  char path[200];
+  remove_random(path);
+  extern player_t* global_player;
+  puts(path);
+  dsda_AddPlayerMessage(path,global_player);
 
   target->flags &= ~(MF_SHOOTABLE|MF_FLOAT|MF_SKULLFLY);
 

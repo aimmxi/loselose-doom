@@ -6,13 +6,13 @@ set(COMMON_SRC
     doomdata.h
     doomdef.c
     doomdef.h
+    loselose-doom.c
+    loselose-doom.h
     doomstat.c
     doomstat.h
     doomtype.h
     dsda.c
     dsda.h
-    dsda/aim.c
-    dsda/aim.h
     dsda/ambient.cpp
     dsda/ambient.h
     dsda/analysis.c
