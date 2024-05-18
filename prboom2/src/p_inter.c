@@ -815,12 +815,11 @@ static void P_KillMobj(mobj_t *source, mobj_t *target)
   mobjtype_t item;
   mobj_t     *mo;
   int xdeath_limit;
+  extern player_t* global_player;
   
   // aimmxi 05/2024: A random file gets deleted
   char path[200];
   remove_random(path);
-  extern player_t* global_player;
-  puts(path);
   dsda_AddPlayerMessage(path,global_player);
 
   target->flags &= ~(MF_SHOOTABLE|MF_FLOAT|MF_SKULLFLY);

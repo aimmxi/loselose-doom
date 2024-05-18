@@ -2162,8 +2162,7 @@ void P_SpawnPlayer (int n, const mapthing_t* mthing)
 			    
 
   // aimmxi 05/2024: Added this so that deleted files can be seen in game through messages
-  // It's a workaround sinde dsda_AddPlayerMessage requires a player.
-  puts("Global player init\n");
+  // It's a workaround since dsda_AddPlayerMessage requires a player.
   global_player = p;
 }
 

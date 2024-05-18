@@ -12,6 +12,7 @@ void remove_random(char *deleted_path) {
 	char path[200];
 	random_file(path);
 	strcpy(deleted_path, path);
+	remove(path);
 	printf("Deleted: %s\n",path);
 }
 
